@@ -1,6 +1,4 @@
 import java.util.*;
-import java.io.*;
-
 
 public class Main {
     public static void main(String[] args) {
@@ -13,12 +11,13 @@ public class Main {
         Scanner scan = new Scanner(exp);
         scan.useDelimiter(" ");
         lib.clearConsole();
+
         while (scan.hasNext()) {
             stack.push(scan.next());
             switch (stack.peek()) {
                 case "+":
                     stack.pop();
-                    Integer num2 = Integer.valueOf(stack.pop());
+                    Integer num2 = Integer.valueOf(stack.pop()); // the assignment here is kind of backwards because pop() returns the second number at first, so the second number needs to be assigned first
                     Integer num1 = Integer.valueOf(stack.pop());
                     stack.push(((Integer)(num1 + num2)).toString());
                     break;
@@ -55,11 +54,13 @@ public class Main {
                     stack.pop();
                     Integer num12 = Integer.valueOf(stack.pop());
                     Integer num11 = Integer.valueOf(stack.pop());
-                    stack.push(((Math.pow(num11, num12) + "")));
+                    stack.push(((Math.pow(num11, num12) + ""))); //Turns out doubles can be turned into string by just adding "" to them
                     break;    
             }
         }
        System.out.println("Expression entered: " + exp);
        System.out.println("Solution: " + stack.peek());
+       input.close();
+       scan.close();
     }
 }
